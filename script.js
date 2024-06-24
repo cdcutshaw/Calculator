@@ -1,5 +1,12 @@
-//1. create basic math functions
+const display = document.querySelector("#display");
 
+// 2. create variables for calculator operation
+let num1 = "";
+let num2 = "";
+let operator = "";
+
+
+//1. create basic math functions
 function add (a, b) 
 {
     return a + b;
@@ -24,10 +31,7 @@ function divide (a, b)
     return a / b;
 }
 
-// 2. create variables for calculator operation
-let num1 = "";
-let num2 = "";
-let operator = "";
+
 
 
 //3. create operate function 
@@ -51,5 +55,10 @@ function operate (num1, num2, operator)
     }       
 }
 
-
-
+//updates display when number buttons are clicked
+const number = document.querySelectorAll(".num");
+number.forEach((num) =>{
+    num.addEventListener("click", () =>{
+        display.textContent += num.textContent
+    })
+})
