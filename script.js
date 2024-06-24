@@ -1,9 +1,11 @@
 const display = document.querySelector("#display");
 
+
+
 // 2. create variables for calculator operation
 let num1 = "";
 let num2 = "";
-let operator = "";
+
 
 
 //1. create basic math functions
@@ -56,15 +58,33 @@ function operate (num1, num2, operator)
 }
 
 //updates display when number buttons are clicked
-const number = document.querySelectorAll(".num");
-number.forEach((num) =>{
+const num = document.querySelectorAll(".num");
+num.forEach((num) => {
     num.addEventListener("click", () =>{
         display.textContent += num.textContent
     })
+    
+    
 })
 
+//stores display value as num1 when operator button clicked, sets display to operatorBtn textContent
+const operatorBtn = document.querySelectorAll(".operatorBtn")
+operatorBtn.forEach((operatorBtn) => {
+    operatorBtn.addEventListener("click", () => {
+        num1 = display.textContent;
+        display.textContent = operatorBtn.textContent
+    })
+    
+})  
+
+
+
+    
+
+//clears display when clear button is pushed
 const clear = document.querySelector("#clear");
     clear.addEventListener("click", () => {
         display.textContent = ""
 
 })
+
