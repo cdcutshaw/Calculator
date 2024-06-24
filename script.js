@@ -62,3 +62,9 @@ number.forEach((num) =>{
         display.textContent += num.textContent
     })
 })
+
+const clear = document.querySelector("#clear");
+    clear.addEventListener("click", () => {
+        display.textContent = ""
+
+})
