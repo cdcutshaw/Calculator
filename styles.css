@@ -64,7 +64,7 @@ button {
     background-color: gray
 } 
 
-.operator, #equals {
+.operatorBtn, #equalsBtn {
     background-color: goldenrod ;
 }
 
