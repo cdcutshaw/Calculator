@@ -1,14 +1,14 @@
 const display = document.querySelector("#display");
 
+let num1 = undefined ;
+let num2 = undefined;
+let operator = undefined;
+let result = undefined;
 
 
-// 2. create variables for calculator operation
-let num1 = "";
-let num2 = "";
 
 
-
-//1. create basic math functions
+//basic math functions
 function add (a, b) 
 {
     return a + b;
@@ -36,22 +36,22 @@ function divide (a, b)
 
 
 
-//3. create operate function 
+//operate function 
 function operate (num1, num2, operator) 
 {
-    if(operator === "+")
+    if(operator === ' + ')
     {
         return add(num1, num2);
     }
-    else if (operator === "-")
+    else if (operator === ' - ')
     {
         return subtract(num1, num2);
     }
-    else if (operator === "*")
+    else if (operator === ' x ')
     {    
         return multiply(num1, num2);
     }
-    else if (operator === "/") 
+    else if (operator === ' / ') 
     {
         return divide(num1, num2);
     }       
@@ -61,30 +61,49 @@ function operate (num1, num2, operator)
 const num = document.querySelectorAll(".num");
 num.forEach((num) => {
     num.addEventListener("click", () =>{
-        display.textContent += num.textContent
-    })
-    
-    
-})
+        if (operator == undefined) {
+            display.textContent += num.textContent 
+            unprocessed = display.textContent
+            processed = unprocessed.split(" ").join("");
+            num1 = Number(processed);
+        }
 
-//stores display value as num1 when operator button clicked, sets display to operatorBtn textContent
+        else if (typeof operator == 'string'){
+            display.textContent += num.textContent;
+            unprocessed = display.textContent;
+            processed = unprocessed.split(" ").join("");
+            num2 = Number(processed);
+            result = operate(num1, num2, operator);
+
+        }  
+        
+        
+    })
+})
+//updates operator variable when operatorBtn clicked
 const operatorBtn = document.querySelectorAll(".operatorBtn")
 operatorBtn.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
-        num1 = display.textContent;
-        display.textContent = operatorBtn.textContent
-    })
+        operator = operatorBtn.textContent;
+        display.textContent = ""
+        
+    })    
+}) 
+
+//calls operate function when equalsBtn clicked
+const equalsBtn = document.querySelector("#equalsBtn")
+equalsBtn.addEventListener("click", () => {
+     display.textContent = result;
+     
+});
+
     
-})  
 
-
-
-    
-
-//clears display when clear button is pushed
+//clears display when clear button clicked
 const clear = document.querySelector("#clear");
     clear.addEventListener("click", () => {
-        display.textContent = ""
+        display.textContent = undefined;
+        operator = undefined;
 
-})
+});
 
