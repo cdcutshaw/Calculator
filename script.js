@@ -65,7 +65,7 @@ num.forEach((num) => {
             display.textContent += num.textContent 
             num1 = Number(display.textContent.split(" ").join(""));
         }
-        //when multiple operations are performed before hitting equalsBtn
+        //when entering num2 or multiple operations are performed before hitting equalsBtn
         else if (typeof operator == 'string' && typeof num1 == 'number' ){
             display.textContent += num.textContent;
             num2 = Number(display.textContent.split(" ").join(""));
@@ -125,7 +125,16 @@ const percentage = document.querySelector('#percentage');
 
             else if (num2 !== undefined) {
                 num2 = Number(display.textContent.split(" ").join(""))
-                result = operate(num1, num2, operator);}
-            
-        
+                result = operate(num1, num2, operator);} 
+    })
+
+    const plusMinus = document.querySelector('#plusMinus');
+    plusMinus.addEventListener("click", () =>{
+        display.textContent = (-(display.textContent.split(" ").join("")));
+            if (num2 == undefined) {
+                num1 = Number(display.textContent.split(" ").join(""));}
+
+            else if (num2 !== undefined) {
+                num2 = Number(display.textContent.split(" ").join(""))
+                result = operate(num1, num2, operator);} 
     })
