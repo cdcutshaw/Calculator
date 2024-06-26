@@ -1,4 +1,8 @@
 const display = document.querySelector("#display");
+const decimalBtn = document.querySelector("#decimalBtn")
+
+
+
 
 let num1 = undefined ;
 let num2 = undefined;
@@ -6,9 +10,6 @@ let operator = undefined;
 let result = undefined;
 
 
-
-
-//basic math functions
 function add (a, b) 
 {
     return a + b;
@@ -58,22 +59,23 @@ function operate (num1, num2, operator)
 const num = document.querySelectorAll(".num");
 num.forEach((num) => {
     num.addEventListener("click", () =>{
+        //when entering initial operation
         if (operator == undefined) {
             display.textContent += num.textContent 
             unprocessed = display.textContent
             processed = unprocessed.split(" ").join("");
             num1 = Number(processed);
         }
-
+        //when multiple operations are performed before hitting equalsBtn
         else if (typeof operator == 'string' && typeof num1 == 'number'){
             display.textContent += num.textContent;
             unprocessed = display.textContent;
             processed = unprocessed.split(" ").join("");
             num2 = Number(processed);
             result = operate(num1, num2, operator);
-
+           
         }  
-        
+        //when operation performed with result of hitting equalsBtn
         else if (num1 == undefined && typeof result == 'number'){
             display.textContent = "";
             display.textContent += num.textContent 
@@ -84,15 +86,16 @@ num.forEach((num) => {
         } 
     })
 })
-//updates operator variable when operatorBtn clicked
+
 const operatorBtn = document.querySelectorAll(".operatorBtn")
 operatorBtn.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
+        //when entering initial calculation
         if (operator == undefined) {
             operator = operatorBtn.textContent;
             display.textContent = ""
         }
-
+        //when performing additional operations 
         else if (typeof operator == 'string'){
             operator = operatorBtn.textContent;
             display.textContent = "";
@@ -119,3 +122,7 @@ const clear = document.querySelector("#clear");
         result = undefined;
 });
 
+const percentage = document.querySelector('#percentage');
+    percentage.addEventListener("click", () =>{
+        display.textContent = display.textContent.split(" ").join("") / 100
+    })
