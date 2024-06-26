@@ -102,8 +102,13 @@ operatorBtn.forEach((operatorBtn) => {
 
 const equalsBtn = document.querySelector("#equalsBtn")
 equalsBtn.addEventListener("click", () => {
-     display.textContent = result;
-     num1 = undefined;
+    if (num2 !== undefined){
+        display.textContent = result;
+        num1 = undefined;
+    }
+    else if (num2 == undefined) {
+        display.textContent = num1;
+    }
      
 });
 
