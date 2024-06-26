@@ -34,9 +34,6 @@ function divide (a, b)
 }
 
 
-
-
-//operate function 
 function operate (num1, num2, operator) 
 {
     if(operator === ' + ')
@@ -57,7 +54,7 @@ function operate (num1, num2, operator)
     }       
 }
 
-//updates display when number buttons are clicked
+
 const num = document.querySelectorAll(".num");
 num.forEach((num) => {
     num.addEventListener("click", () =>{
@@ -68,7 +65,7 @@ num.forEach((num) => {
             num1 = Number(processed);
         }
 
-        else if (typeof operator == 'string'){
+        else if (typeof operator == 'string' && typeof num1 == 'number'){
             display.textContent += num.textContent;
             unprocessed = display.textContent;
             processed = unprocessed.split(" ").join("");
@@ -77,33 +74,48 @@ num.forEach((num) => {
 
         }  
         
-        
+        else if (num1 == undefined && typeof result == 'number'){
+            display.textContent = "";
+            display.textContent += num.textContent 
+            unprocessed = display.textContent
+            processed = unprocessed.split(" ").join("");
+            num1 = Number(processed);
+            operator = undefined
+        } 
     })
 })
 //updates operator variable when operatorBtn clicked
 const operatorBtn = document.querySelectorAll(".operatorBtn")
 operatorBtn.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
-        operator = operatorBtn.textContent;
-        display.textContent = ""
-        
+        if (operator == undefined) {
+            operator = operatorBtn.textContent;
+            display.textContent = ""
+        }
+
+        else if (typeof operator == 'string'){
+            operator = operatorBtn.textContent;
+            display.textContent = "";
+            num1 = result;
+        }  
     })    
 }) 
 
-//calls operate function when equalsBtn clicked
+
 const equalsBtn = document.querySelector("#equalsBtn")
 equalsBtn.addEventListener("click", () => {
      display.textContent = result;
+     num1 = undefined;
      
 });
 
-    
 
-//clears display when clear button clicked
 const clear = document.querySelector("#clear");
     clear.addEventListener("click", () => {
         display.textContent = undefined;
+        num1 = undefined ;
+        num2 = undefined;
         operator = undefined;
-
+        result = undefined;
 });
 
