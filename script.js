@@ -1,5 +1,5 @@
 const display = document.querySelector("#display");
-const decimalBtn = document.querySelector("#decimalBtn")
+
 
 
 
@@ -8,6 +8,7 @@ let num1 = undefined ;
 let num2 = undefined;
 let operator = undefined;
 let result = undefined;
+
 
 
 function add (a, b) 
@@ -62,16 +63,12 @@ num.forEach((num) => {
         //when entering initial operation
         if (operator == undefined) {
             display.textContent += num.textContent 
-            unprocessed = display.textContent
-            processed = unprocessed.split(" ").join("");
-            num1 = Number(processed);
+            num1 = Number(display.textContent.split(" ").join(""));
         }
         //when multiple operations are performed before hitting equalsBtn
-        else if (typeof operator == 'string' && typeof num1 == 'number'){
+        else if (typeof operator == 'string' && typeof num1 == 'number' ){
             display.textContent += num.textContent;
-            unprocessed = display.textContent;
-            processed = unprocessed.split(" ").join("");
-            num2 = Number(processed);
+            num2 = Number(display.textContent.split(" ").join(""));
             result = operate(num1, num2, operator);
            
         }  
@@ -79,9 +76,7 @@ num.forEach((num) => {
         else if (num1 == undefined && typeof result == 'number'){
             display.textContent = "";
             display.textContent += num.textContent 
-            unprocessed = display.textContent
-            processed = unprocessed.split(" ").join("");
-            num1 = Number(processed);
+            num1 = Number(display.textContent.split(" ").join(""));
             operator = undefined
         } 
     })
@@ -91,7 +86,7 @@ const operatorBtn = document.querySelectorAll(".operatorBtn")
 operatorBtn.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
         //when entering initial calculation
-        if (operator == undefined) {
+        if (operator == undefined ) {
             operator = operatorBtn.textContent;
             display.textContent = ""
         }
@@ -124,5 +119,13 @@ const clear = document.querySelector("#clear");
 
 const percentage = document.querySelector('#percentage');
     percentage.addEventListener("click", () =>{
-        display.textContent = display.textContent.split(" ").join("") / 100
+        display.textContent = display.textContent.split(" ").join("") / 100;
+            if (num2 == undefined) {
+                num1 = Number(display.textContent.split(" ").join(""));}
+
+            else if (num2 !== undefined) {
+                num2 = Number(display.textContent.split(" ").join(""))
+                result = operate(num1, num2, operator);}
+            
+        
     })
